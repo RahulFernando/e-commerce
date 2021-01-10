@@ -14,7 +14,7 @@ exports.requierSignIn = (req, res, next) => {
 
 // verify only user can read categories
 exports.userMiddleware = (req, res, next) => {
-    if (req.user.role !== 'user ') {
+    if (req.user.role !== "user") {
         return res.status(400).json({ message: 'Acces denied' });
     }
     next(); 
@@ -22,7 +22,7 @@ exports.userMiddleware = (req, res, next) => {
 
 // verify only admin can create categories
 exports.adminMiddleware = (req, res, next) => {
-    if (req.user.role !== 'admin ') {
+    if (req.user.role !== "admin") {
         return res.status(400).json({ message: 'Acces denied' });
     }
     next();

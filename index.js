@@ -7,6 +7,8 @@ const app = express();
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin/auth');
 const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
+const cartRoutes = require('./routes/cart');
 
 // environment variable
 env.config();
@@ -24,6 +26,8 @@ app.use(express.json());
 app.use('/api', authRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
+app.use('/api', cartRoutes);
 
 // listening to port
 app.listen(process.env.PORT, () => {
