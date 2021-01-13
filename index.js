@@ -1,6 +1,7 @@
 const express = require('express');
 const env = require('dotenv');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 
 // routes
@@ -23,6 +24,7 @@ mongoose.connect(
 
 // middlewares
 app.use(express.json());
+app.use(cors());
 app.use('/api', authRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', categoryRoutes);
