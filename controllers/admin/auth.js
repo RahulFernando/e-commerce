@@ -59,6 +59,7 @@ exports.signin = (req, res) => {
                     role,
                     fullName
                 } = user;
+                res.cookie('token', token, { expiresIn: '1h' });
                 res.status(200).json({
                     token,
                     user: {
@@ -79,4 +80,10 @@ exports.signin = (req, res) => {
             res.status(400).json({ message: 'Something went wrong' })
         }
     })
+}
+
+// signout admin from system 
+exports.signout = (req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({ message: 'Signout successfully...' });
 }
