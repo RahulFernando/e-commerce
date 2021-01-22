@@ -7,12 +7,11 @@ import { login } from '../../actions'
 import { Redirect } from 'react-router-dom'
 
 const Signin = (props) => {
-
+  // states
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const auth = useSelector(state => state.auth)
-
   const dispatch = useDispatch();
 
 
@@ -26,6 +25,7 @@ const Signin = (props) => {
     dispatch(login(user));
   }
 
+  // redirect user to home if logged
   if (auth.authenticate) {
     return <Redirect to={`/`} />
   }

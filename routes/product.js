@@ -4,8 +4,9 @@ const multer = require("multer");
 const router = express.Router();
 const shortid = require("shortid");
 const path = require("path");
-const { create } = require('../controllers/product');
+const { create, getAll } = require('../controllers/product');
 
+// setup multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(path.dirname(__dirname), "uploads"));
@@ -17,6 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.post('/product/create', requierSignIn, adminMiddleware, upload.array('producImgs'), create);
+router.post('/product/create', requierSignIn, adminMiddleware, upload.array('productImgs'), create);
+router.get('/product/getAll', getAll);
 
 module.exports = router;

@@ -26,15 +26,10 @@ const Signup = (props) => {
     dispatch(signup(user));
   }
 
+  // redirect user to home if logged
   if (auth.authenticate) {
     return <Redirect to={`/`} />
   }
-  
-  // if (register.loading) {
-  //   return (
-  //     <Spinner animation="border"/>
-  //   )
-  // }
 
   return (
     <Layout>

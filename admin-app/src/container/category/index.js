@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Modal, Button } from "react-bootstrap";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory, getAllCategories } from "../../actions";
+import { addCategory } from "../../actions";
 import Layout from "../../components/layouts";
 import Input from '../../components/ui';
+import ModalUI from "../../components/ui/modal";
 
 const Category = (props) => {
+    // states
     const [show, setShow] = useState(false);
     const [name, setName] = useState('');
     const dispatch = useDispatch();
     const category = useSelector(state => state.category);
-
-    useEffect(() => {
-        dispatch(getAllCategories());
-    }, []);
 
     // rendering all categories
     const renderCategories = (categories) => {
@@ -27,6 +25,7 @@ const Category = (props) => {
       return myCategories;
     }
 
+    // submit form
     const handleClose = () => {
       const category = { name }
 
@@ -34,6 +33,8 @@ const Category = (props) => {
 
       setShow(false);
     }
+
+    // handle modal
     const handleShow = () => setShow(true);
 
     return (
@@ -42,8 +43,8 @@ const Category = (props) => {
           <Row>
             <Col md={12}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <h3>Category</h3>
-                <button className="btn" onClick={handleShow}>Add</button>
+                <h3>Categorys</h3>
+                <Button variant="light" onClick={handleShow}>Add</Button>
               </div>
             </Col>
           </Row>
@@ -56,25 +57,20 @@ const Category = (props) => {
           </Row>
         </Container>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add new category</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Input
-               label="Category Name"
-               placeholder="Enter category"
-               value={name}
-               type="text"
-               onChange={(e) => setName(e.target.value)}
+        <ModalUI 
+          show={show}
+          handleClose={handleClose}
+          modalTitle="Add new category"
+        >
+
+          <Input
+            label="Category Name"
+            placeholder="Enter category"
+            value={name}
+            type="text"
+            onChange={(e) => setName(e.target.value)}
             />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        </ModalUI>
       </Layout>
     );
 }

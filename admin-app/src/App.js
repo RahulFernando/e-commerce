@@ -4,6 +4,7 @@ import "./App.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from './actions/auth'
+import { getAllCategories } from "./actions";
 
 // pages and private routes
 import Home from "./container/home";
@@ -13,6 +14,7 @@ import PrivateRoute from "./components/hoc/private";
 import Products from "./container/products";
 import Orders from "./container/orders";
 import Category from "./container/category";
+import { getAll } from "./actions/product";
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
+      dispatch(getAllCategories())
+      dispatch(getAll());
     }
   }, [])
 

@@ -1,6 +1,7 @@
 const slugify = require('slugify');
 const Product = require('../models/product');
 
+// add new product to database
 exports.create = (req, res) => {
     const {
         name, 
@@ -31,4 +32,14 @@ exports.create = (req, res) => {
         if (error) return res.status(400).json({ error });
         if (product) return res.status(201).json({ product });
     });
+}
+
+// retreive all products
+exports.getAll = (req, res) => {
+    Product.find({  })
+    .populate('category')
+    .exec((error, products) =>  {
+        if (error) return res.status(400).json({ error });
+        if (products) return res.status(200).json({ products });
+    })
 }
