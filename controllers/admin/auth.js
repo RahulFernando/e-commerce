@@ -1,6 +1,7 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const shortid = require('shortid')
 
 // add new user to database if user is not registered
 exports.signup = (req, res) => {
@@ -27,7 +28,7 @@ exports.signup = (req, res) => {
             lastName,
             email,
             hash_password,
-            userName: Math.random().toString(),
+            userName: shortid.generate(),
             role: 'admin'
         });
 

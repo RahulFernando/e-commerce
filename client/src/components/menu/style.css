@@ -1,0 +1,34 @@
+.menuHeader {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border-bottom: 1px solid #cecece;
+    box-shadow: 0 2px 2px -2px #333;
+}
+
+.menuHeader ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuHeader > ul {
+    display: flex;
+    margin: 0 50px;
+    position: relative;
+}
+
+.menuHeader > ul > li {
+    display: block;
+    line-height: 40px;
+    cursor: pointer;
+    padding: 0 20px;
+}
+
+.menuHeader > ul > li:hover {
+    color: chocolate;
+}
+
+.menuHeader > ul > li > a {
+    text-decoration: none;
+}
