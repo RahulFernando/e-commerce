@@ -8,8 +8,6 @@ export const getAllCategories = () => {
 
         const res = await axios.get(`/category/getCategories`);
 
-        console.log(res);
-
         if (res.status === 200) {
             const { categories } = res.data;  
             dispatch({

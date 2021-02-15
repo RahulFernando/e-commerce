@@ -1,5 +1,6 @@
 const slugify = require('slugify');
 const Product = require('../models/product');
+const Category = require('../models/category');
 
 // add new product to database
 exports.create = (req, res) => {
@@ -42,4 +43,21 @@ exports.getAll = (req, res) => {
         if (error) return res.status(400).json({ error });
         if (products) return res.status(200).json({ products });
     })
+}
+
+// retreive product by slug
+exports.getProductBySlug = (req, res) => {
+    const { slug } = req.params;
+
+    Category.findOne({ slug: slug })
+    .exec((error, category) => {
+        if (error) return res.status(400).json({ error })
+        if (category) {
+            Product.find({ category: category._id })
+            .exec((error, products) => {
+                if (error) return res.status(400).json({ error })
+                if (products) return res.status(200).json({ products });
+            })
+        }
+    });
 }

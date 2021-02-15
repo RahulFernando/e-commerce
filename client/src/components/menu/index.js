@@ -15,7 +15,7 @@ const Menu = (props) => {
         let temp = [];
         for (let cat of categories) {
             temp.push(
-                <li key={cat._id}><a href={cat.slud}>{cat.name}</a></li>
+                <li key={cat._id}><a href={cat.slug}>{cat.name}</a></li>
             )
         }
         return temp;
